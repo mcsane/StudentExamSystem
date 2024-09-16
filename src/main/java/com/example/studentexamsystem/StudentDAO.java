@@ -18,7 +18,9 @@ public class StudentDAO {
 
     public List<Student> getAllStudents() {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
-        List<Student> students = entityManager.createQuery("from Student", Student.class).getResultList();
+        List<Student> students = entityManager.createQuery(
+                "SELECT s FROM Student s JOIN FETCH s.exams", Student.class).getResultList();
+
         entityManager.close();
         return students;
     }

@@ -10,6 +10,7 @@ public class ExamDAO {
     public void saveExam(Exam exam) {
         EntityManager entityManager = ENTITY_MANAGER_FACTORY.createEntityManager();
         entityManager.getTransaction().begin();
+        exam.setSavedDataa(new java.util.Date(System.currentTimeMillis()) );
         entityManager.persist(exam);
         entityManager.getTransaction().commit();
         entityManager.close();
